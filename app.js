@@ -34,6 +34,7 @@ app.get("/compose", function(req, res){
   res.render("compose");
 });
 
+
 app.post("/compose", function(req, res){
   const post = {
     title: req.body.postTitle,
@@ -43,6 +44,18 @@ app.post("/compose", function(req, res){
   res.redirect("/");
 });
 
+app.get("/posts/:topic", function(req, res){
+  const requestedTitle = req.params.topic;
+
+  posts.forEach(function(post){
+    const storedTitle = post.title;
+
+    if (storedTitle === requestedTitle) {
+      console.log("match found");
+    }
+  });
+
+});
 
 
 
