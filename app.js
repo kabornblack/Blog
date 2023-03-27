@@ -47,20 +47,20 @@ app.post("/compose", function(req, res){
 
 app.get("/posts/:topic", function(req, res){
   const requestedTitle = _.lowerCase(req.params.topic);
+  const requestedContent = req.body.postBody;
 
   posts.forEach(function(post){
     const storedTitle = _.lowerCase(post.title);
 
     if (requestedTitle === storedTitle) {
-      console.log("match found");
-    } else {
-      console.log("Not a match");
+      res.render("post", {
+        title: post.title,
+        content: post.content
+      });
     }
   });
-
+  
 });
-
-
 
 
 
